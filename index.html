@@ -1,0 +1,3143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EarCare</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arya:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=arya:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        :root {
+            --brand-primary: #2563eb;
+            --brand-secondary: #3b82f6;
+            --brand-light: #dbeafe;
+            --brand-muted: #bfdbfe;
+            --brand-accent: #1e293b;
+            --support-peach: #f0f9ff;
+            --text-dark: #0f172a;
+            --muted: #64748b;
+            --success-color: #00ff19;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+        }
+
+        .bg-brand-primary {
+            background-color: var(--brand-primary);
+        }
+
+        .bg-brand-secondary {
+            background-color: var(--brand-secondary);
+        }
+
+        .bg-brand-light {
+            background-color: var(--brand-light);
+        }
+
+        .bg-brand-muted {
+            background-color: var(--brand-muted);
+        }
+
+        .bg-brand-accent {
+            background-color: var(--brand-accent);
+        }
+
+        .text-brand-primary {
+            color: var(--brand-primary);
+        }
+
+        .text-brand-secondary {
+            color: var(--brand-secondary);
+        }
+
+        .text-brand-light {
+            color: var(--brand-light);
+        }
+
+        .text-brand-muted {
+            color: var(--brand-muted);
+        }
+
+        .text-brand-accent {
+            color: var(--brand-accent);
+        }
+
+        .border-brand-primary {
+            border-color: var(--brand-primary);
+        }
+
+        .border-brand-secondary {
+            border-color: var(--brand-secondary);
+        }
+
+        .border-brand-light {
+            border-color: var(--brand-light);
+        }
+
+        .border-brand-muted {
+            border-color: var(--brand-muted);
+        }
+
+        .border-brand-accent {
+            border-color: var(--brand-accent);
+        }
+
+        .font-arya {
+            font-family: 'Arya', sans-serif;
+        }
+
+        /* Modern UI Styles */
+        .slider-container {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .slider-container:hover {
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.15);
+        }
+
+        .modern-slider {
+            -webkit-appearance: none;
+            height: 8px;
+            border-radius: 6px;
+            outline: none;
+            background: linear-gradient(to right, #e2e8f0 0%, var(--brand-primary) 0%);
+            transition: all 0.3s ease;
+        }
+
+        .modern-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--brand-primary);
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .modern-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .health-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            color: white;
+        }
+
+        /* FAQ Section Styles */
+        .faq-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 24px;
+            margin: 20px 0;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.08);
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 16px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .faq-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.15);
+            border-color: rgba(37, 99, 235, 0.3);
+        }
+
+        .faq-question {
+            padding: 18px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            user-select: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .faq-question:hover {
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .faq-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            color: white;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+        .faq-active .faq-icon {
+            transform: rotate(180deg) scale(1.1);
+            background: linear-gradient(135deg, var(--brand-secondary), #1d4ed8);
+        }
+
+        .faq-text {
+            flex: 1;
+            color: var(--brand-accent);
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .faq-toggle {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--brand-light);
+            color: var(--brand-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-active .faq-toggle {
+            background: var(--brand-primary);
+            color: white;
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(37, 99, 235, 0.02);
+        }
+
+        .faq-answer.show {
+            max-height: 200px;
+            opacity: 1;
+            padding: 20px;
+            border-top: 1px solid rgba(37, 99, 235, 0.1);
+        }
+
+        .faq-answer-content {
+            color: var(--text-dark);
+            font-size: 15px;
+            line-height: 1.6;
+            padding-left: 55px;
+        }
+
+        /* FAQ Header */
+        .faq-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .faq-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--brand-primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .faq-subtitle {
+            color: var(--text-dark);
+            opacity: 0.8;
+            font-size: 16px;
+        }
+
+        /* Animation for FAQ items */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .faq-item {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .faq-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .faq-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .faq-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .faq-item:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .faq-item:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .faq-item:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        /* Customer Reviews Section Styles */
+        .reviews-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 24px;
+            margin: 20px 0;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.08);
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .review-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(37, 99, 235, 0.15);
+            border-color: rgba(37, 99, 235, 0.3);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .customer-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--brand-primary);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+        }
+
+        .customer-info h4 {
+            color: var(--brand-primary);
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0 0 4px 0;
+        }
+
+        .customer-info .location {
+            color: var(--muted);
+            font-size: 14px;
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        .review-text {
+            color: var(--text-dark);
+            font-size: 16px;
+            line-height: 1.6;
+            font-style: italic;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .review-text::before {
+            content: '"';
+            font-size: 40px;
+            color: var(--brand-primary);
+            position: absolute;
+            left: -10px;
+            top: -5px;
+            font-family: serif;
+            opacity: 0.3;
+        }
+
+        .review-text::after {
+            content: '"';
+            font-size: 40px;
+            color: var(--brand-primary);
+            position: absolute;
+            right: -10px;
+            bottom: -20px;
+            font-family: serif;
+            opacity: 0.3;
+        }
+
+        .review-rating {
+            display: flex;
+            gap: 4px;
+            margin-top: 12px;
+            justify-content: flex-end;
+        }
+
+        .star {
+            color: #fbbf24;
+            font-size: 18px;
+        }
+
+        /* Reviews Header */
+        .reviews-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .reviews-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--brand-primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .reviews-subtitle {
+            color: var(--text-dark);
+            opacity: 0.8;
+            font-size: 16px;
+        }
+
+        /* Animation for review cards */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .review-card {
+            animation: slideInLeft 0.8s ease forwards;
+        }
+
+        .review-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .review-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .review-card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        /* Ingredients Section Styles */
+        .ingredients-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 24px;
+            margin: 20px 0;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.08);
+        }
+
+        .ingredient-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ingredient-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 15px 45px rgba(37, 99, 235, 0.2);
+            border-color: rgba(37, 99, 235, 0.4);
+        }
+
+        .ingredient-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .ingredient-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--brand-primary);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .ingredient-card:hover .ingredient-image {
+            transform: rotate(360deg) scale(1.1);
+            border-color: var(--brand-secondary);
+        }
+
+        .ingredient-name {
+            color: var(--brand-primary);
+            font-size: 22px;
+            font-weight: 700;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-size: 15px;
+            line-height: 1.5;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            color: var(--brand-primary);
+            transform: translateX(5px);
+        }
+
+        .benefit-icon {
+            color: #10b981;
+            font-size: 16px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        /* Ingredients Header */
+        .ingredients-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .ingredients-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--brand-primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .ingredients-subtitle {
+            color: var(--text-dark);
+            opacity: 0.8;
+            font-size: 16px;
+        }
+
+        /* Animation for ingredient cards */
+        @keyframes bounceIn {
+            from {
+                opacity: 0;
+                transform: scale(0.3) translateY(30px);
+            }
+
+            50% {
+                transform: scale(1.05) translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .ingredient-card {
+            animation: bounceIn 0.8s ease forwards;
+        }
+
+        .ingredient-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .ingredient-card:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .ingredient-card:nth-child(3) {
+            animation-delay: 0.5s;
+        }
+
+        .ingredient-card:nth-child(4) {
+            animation-delay: 0.7s;
+        }
+
+        /* Decorative elements */
+        .ingredient-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .ingredient-card:hover::before {
+            left: 100%;
+        }
+
+        /* Benefits Section Styles */
+        .benefits-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 24px;
+            margin: 20px 0;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefits-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(37, 99, 235, 0.02), rgba(59, 130, 246, 0.02), rgba(37, 99, 235, 0.02));
+            animation: backgroundShimmer 4s ease-in-out infinite;
+        }
+
+        @keyframes backgroundShimmer {
+
+            0%,
+            100% {
+                transform: translateX(-100%);
+            }
+
+            50% {
+                transform: translateX(100%);
+            }
+        }
+
+        .benefit-item-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            transform: translateX(-100px);
+            opacity: 0;
+        }
+
+        .benefit-item-card.animate-in {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .benefit-item-card:hover {
+            transform: translateX(0) translateY(-8px) scale(1.03);
+            box-shadow: 0 20px 50px rgba(37, 99, 235, 0.2);
+            border-color: rgba(37, 99, 235, 0.4);
+        }
+
+        .benefit-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .benefit-icon-wrapper {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            color: white;
+            font-size: 24px;
+            flex-shrink: 0;
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .benefit-icon-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--brand-primary), var(--brand-secondary), #1d4ed8, var(--brand-primary));
+            background-size: 300% 300%;
+            animation: rotateGradient 3s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotateGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .benefit-item-card:hover .benefit-icon-wrapper {
+            transform: rotate(360deg) scale(1.2);
+            box-shadow: 0 15px 40px rgba(37, 99, 235, 0.5);
+        }
+
+        .benefit-text {
+            flex: 1;
+            color: var(--text-dark);
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        .benefit-text::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+            transition: width 0.6s ease;
+        }
+
+        .benefit-item-card:hover .benefit-text::after {
+            width: 100%;
+        }
+
+        /* Benefits Header */
+        .benefits-header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .benefits-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--brand-primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+        }
+
+        .benefits-title .star-icon {
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+
+            0%,
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.3) rotate(180deg);
+                opacity: 0.8;
+            }
+        }
+
+        .benefits-subtitle {
+            color: var(--text-dark);
+            opacity: 0.8;
+            font-size: 16px;
+        }
+
+        /* Floating particles animation */
+        .benefits-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle at 20% 20%, rgba(37, 99, 235, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 40% 60%, rgba(37, 99, 235, 0.08) 1px, transparent 1px);
+            background-size: 50px 50px, 80px 80px, 60px 60px;
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) translateX(0px);
+            }
+
+            33% {
+                transform: translateY(-10px) translateX(5px);
+            }
+
+            66% {
+                transform: translateY(5px) translateX(-5px);
+            }
+        }
+
+        /* Scroll-triggered animation class */
+        .benefit-item-card:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .benefit-item-card:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+
+        .benefit-item-card:nth-child(3) {
+            transition-delay: 0.3s;
+        }
+
+        .benefit-item-card:nth-child(4) {
+            transition-delay: 0.4s;
+        }
+
+        .benefit-item-card:nth-child(5) {
+            transition-delay: 0.5s;
+        }
+
+        /* Dynamic Result Box Status Colors */
+        .result-healthy {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%) !important;
+            border-color: #16a34a !important;
+            box-shadow: 0 4px 20px rgba(34, 197, 94, 0.15);
+        }
+
+        .result-mild {
+            background: linear-gradient(135deg, #fefce8 0%, #fef3c7 100%) !important;
+            border-color: #ca8a04 !important;
+            box-shadow: 0 4px 20px rgba(202, 138, 4, 0.15);
+        }
+
+        .result-attention {
+            background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%) !important;
+            border-color: #ea580c !important;
+            box-shadow: 0 4px 20px rgba(234, 88, 12, 0.15);
+        }
+
+        .result-concern {
+            background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%) !important;
+            border-color: #dc2626 !important;
+            box-shadow: 0 4px 20px rgba(220, 38, 38, 0.15);
+        }
+
+        /* Status Badge Colors */
+        .status-healthy {
+            background: linear-gradient(135deg, #16a34a, #22c55e) !important;
+            color: white !important;
+        }
+
+        .status-mild {
+            background: linear-gradient(135deg, #ca8a04, #eab308) !important;
+            color: white !important;
+        }
+
+        .status-attention {
+            background: linear-gradient(135deg, #ea580c, #f97316) !important;
+            color: white !important;
+        }
+
+        .status-concern {
+            background: linear-gradient(135deg, #dc2626, #ef4444) !important;
+            color: white !important;
+        }
+
+        /* Alert Text Colors */
+        .alert-healthy {
+            color: #16a34a !important;
+        }
+
+        .alert-mild {
+            color: #ca8a04 !important;
+        }
+
+        .alert-attention {
+            color: #ea580c !important;
+        }
+
+        .alert-concern {
+            color: #dc2626 !important;
+        }
+
+        /* Comparison Table Styles */
+        .comparison-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .comparison-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .comparison-card:hover::before {
+            left: 100%;
+        }
+
+        .comparison-item {
+            transition: all 0.2s ease;
+            padding: 8px 0;
+            border-radius: 8px;
+        }
+
+        .comparison-item:hover {
+            background: rgba(255, 255, 255, 0.3);
+            padding-left: 8px;
+            margin-right: -8px;
+        }
+
+        .negative-card .comparison-item:hover {
+            background: rgba(220, 38, 38, 0.05);
+        }
+
+        .positive-card .comparison-item:hover {
+            background: rgba(34, 197, 94, 0.05);
+        }
+
+        /* Certificate Section Styles */
+        .certificate-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .certificate-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.6s ease;
+        }
+
+        .certificate-card:hover::before {
+            transform: scale(1);
+        }
+
+        .certificate-image-wrapper {
+            transition: all 0.3s ease;
+        }
+
+        .certificate-card:hover .certificate-image-wrapper {
+            transform: rotate(5deg);
+        }
+
+        .trust-feature-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trust-feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12) !important;
+        }
+
+        .trust-feature-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -100%;
+            width: 20px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: right 0.6s ease;
+        }
+
+        .trust-feature-card:hover::after {
+            right: 100%;
+        }
+
+        /* Staggered animation for certificate cards */
+        .certificate-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .certificate-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .certificate-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .certificate-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .certificate-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        /* Floating animation for trust badges */
+        @keyframes certificateFloat {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-3px);
+            }
+        }
+
+        .certificate-card {
+            animation: certificateFloat 3s ease-in-out infinite;
+        }
+
+        .certificate-card:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .certificate-card:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        .certificate-card:nth-child(4) {
+            animation-delay: 1.5s;
+        }
+
+        .certificate-card:nth-child(5) {
+            animation-delay: 2s;
+        }
+
+        /* Ear Problems Cards Styles */
+        /* .ear-problems-container {
+            padding: 20px 0;
+        } */
+
+        .ear-problems-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .ear-problem-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.1);
+        }
+
+        /* Alternating 2-color scheme */
+        .ear-problem-card:nth-child(odd) {
+            border: 2px solid rgba(37, 99, 235, 0.2);
+        }
+
+        .ear-problem-card:nth-child(even) {
+            border: 2px solid rgba(22, 163, 74, 0.2);
+        }
+
+        .ear-problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.2);
+        }
+
+        .ear-problem-card:nth-child(odd):hover {
+            border-color: rgba(37, 99, 235, 0.4);
+        }
+
+        .ear-problem-card:nth-child(even):hover {
+            border-color: rgba(22, 163, 74, 0.4);
+        }
+
+        .ear-problem-content {
+            padding: 20px 16px 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .ear-problem-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            line-height: 1.4;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Alternating text colors */
+        .ear-problem-card:nth-child(odd) .ear-problem-text {
+            color: var(--brand-primary);
+        }
+
+        .ear-problem-card:nth-child(even) .ear-problem-text {
+            color: #16a34a;
+        }
+
+        .ear-problem-icon {
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        /* Alternating icon colors */
+        .ear-problem-card:nth-child(odd) .ear-problem-icon {
+            color: var(--brand-primary);
+        }
+
+        .ear-problem-card:nth-child(even) .ear-problem-icon {
+            color: #16a34a;
+        }
+
+        .ear-problem-image {
+            width: 100%;
+            height: 30vh;
+            object-fit: top;
+            border-radius: 0 0 20px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .ear-problem-card:hover .ear-problem-image {
+            transform: scale(1.05);
+        }
+
+        /* Mobile specific styles */
+        @media (max-width: 450px) {
+            .ear-problem-content {
+                padding: 16px 12px 10px;
+            }
+
+            .ear-problem-text {
+                font-size: 1.5rem;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+
+            .ear-problem-image {
+                height: 30vh;
+            }
+        }
+
+        /* Animation for cards */
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .ear-problem-card {
+            animation: slideInFromRight 0.6s ease forwards;
+        }
+
+        .ear-problem-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .ear-problem-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .ear-problem-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .ear-problem-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .ear-problem-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .ear-problem-card:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .ear-problem-card:nth-child(7) {
+            animation-delay: 0.7s;
+        }
+    </style>
+    <style>
+        body {
+            scroll-behavior: smooth;
+            font-weight: 400;
+            /* Space for fixed CTA */
+        }
+
+        /* Container width control */
+        .main-container {
+            max-width: 450px;
+            margin: 0 auto;
+            margin-bottom: 50px;
+            width: 100%;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 450px) {
+            .main-container {
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Creative Logo Styles */
+        .creative-logo {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f1f0f0 0%, #eae5e5 100%);
+            border-radius: 50%;
+            overflow: visible;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: default;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Only apply hover effects on devices that support hover */
+        @media (hover: hover) and (pointer: fine) {
+            .creative-logo:hover {
+                transform: scale(1.1) rotate(12deg);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            }
+
+            .creative-logo:hover .wave {
+                animation-duration: 1s;
+            }
+
+            .creative-logo:hover .sound-waves::after {
+                content: '';
+                position: absolute;
+                left: -25px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 20px;
+                height: 2px;
+                background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6));
+                animation: soundTrail 1s ease-out infinite;
+            }
+
+            .creative-logo:hover .logo-tooltip {
+                opacity: 1;
+            }
+        }
+
+        .creative-logo:active {
+            transform: scale(1.05);
+        }
+
+        .creative-logo:focus {
+            outline: none;
+        }
+
+        .ear-symbol {
+            font-size: 1.5rem;
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .sound-waves {
+            position: absolute;
+            right: -35px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            z-index: 1;
+            width: 40px;
+            height: 30px;
+        }
+
+        .wave {
+            width: 5px;
+            background: linear-gradient(to bottom, rgba(9, 22, 118, 0.9), rgba(9, 45, 137, 0.4), rgba(18, 6, 77, 0.9));
+            border-radius: 1px;
+            animation: soundWaveFlow 2s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        .wave:nth-child(1) {
+            height: 6px;
+            animation-delay: 0s;
+        }
+
+        .wave:nth-child(2) {
+            height: 10px;
+            animation-delay: 0.1s;
+        }
+
+        .wave:nth-child(3) {
+            height: 14px;
+            animation-delay: 0.2s;
+        }
+
+        .wave:nth-child(4) {
+            height: 10px;
+            animation-delay: 0.3s;
+        }
+
+        .wave:nth-child(5) {
+            height: 6px;
+            animation-delay: 0.4s;
+        }
+
+        @keyframes soundWaveFlow {
+            0% {
+                opacity: 0.2;
+                transform: scaleY(0.3) translateX(-5px);
+            }
+
+            30% {
+                opacity: 0.8;
+                transform: scaleY(1) translateX(0px);
+            }
+
+            70% {
+                opacity: 1;
+                transform: scaleY(1.2) translateX(5px);
+            }
+
+            100% {
+                opacity: 0.1;
+                transform: scaleY(0.2) translateX(15px);
+            }
+        }
+
+        /* Enhanced sound wave effect on hover - moved to media query above */
+
+        @keyframes soundTrail {
+            0% {
+                width: 0px;
+                opacity: 0;
+            }
+
+            50% {
+                width: 15px;
+                opacity: 0.8;
+            }
+
+            100% {
+                width: 25px;
+                opacity: 0;
+            }
+        }
+
+        .logo-tooltip {
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--brand-primary);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .brand-text-enhanced {
+            background: linear-gradient(45deg, #ffffff, #f8f8f8, #ffffff, #e8e8e8, #ffffff);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: enhancedTextShimmer 4s ease-in-out infinite;
+            position: relative;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        @keyframes enhancedTextShimmer {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            25% {
+                background-position: 50% 25%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            75% {
+                background-position: 50% 75%;
+            }
+        }
+
+        .brand-text-enhanced::after {
+            content: '👂🔊';
+            position: absolute;
+            top: -5px;
+            right: -25px;
+            font-size: 0.6em;
+            animation: iconBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes iconBounce {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-2px) scale(1.1);
+            }
+        }
+    </style>
+</head>
+
+<body class="font-arya leading-relaxed text-brand-accent"
+    style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #dbeafe 100%); min-height: 100vh;">
+    <div class=" w-full main-container">
+        <!-- Header -->
+        <header
+            class="text-white p-4 flex justify-between items-center gap-6 max-[450px]:p-5 max-[450px]:px-4 max-[450px]:gap-4"
+            style="background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%); border-bottom: 3px solid rgba(255,255,255,0.2); box-shadow: 0 8px 25px rgba(37, 99, 235, 0.15);">
+            <div class="flex items-center justify-center gap-4 max-[450px]:gap-3 flex-1">
+                <div class="w-full flex flex-col items-center justify-center"
+                    style="background-color:rgba(248,210,200,0.2); border-radius: 15px; padding: 8px 16px; backdrop-filter: blur(10px); border: 2px solid rgba(248,210,200,0.3); box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                    <div class="flex flex-row items-center justify-center gap-14 max-[450px]:gap-14">
+                        <div
+                            class="creative-logo glow-border w-14 h-14 rounded-full flex items-center justify-center shadow-brand border-2 border-brand-light border-opacity-30 overflow-visible max-[450px]:w-12 max-[450px]:h-12">
+                            <span class="ear-symbol">👂</span>
+                            <div class="sound-waves">
+                                <div class="wave"></div>
+                                <div class="wave"></div>
+                                <div class="wave"></div>
+                                <div class="wave"></div>
+                                <div class="wave"></div>
+                            </div>
+                        </div>
+                        <div
+                            class="font-arya text-xl font-bold max-[450px]:text-2xl cursor-default text-white drop-shadow-lg text-center leading-tight transition-transform duration-300">
+                            <div class="flex items-center justify-center gap-2 max-[450px]:gap-1 hover:scale-105">
+                                <span class="whitespace-nowrap text-white">Ear</span>
+                                <span class="whitespace-nowrap text-white">Care</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button
+                class="bg-[#22c55e] text-white font-bold border-none px-6 py-3 rounded-lg text-xl cursor-pointer transition-all duration-300 hover:bg-opacity-80 max-[450px]:text-xl max-[450px]:px-4 max-[450px]:py-3 flex-shrink-0"
+                onclick="scrollToContact()">
+                <span class="relative z-10 "> 🛒 ऑर्डर करें
+                </span>
+            </button>
+        </header>
+        <!-- Main Content -->
+        <main style="background: transparent;">
+            <!-- Hero Section -->
+            <section class="relative">
+                <!-- Hero Image - Full Width, Auto Height, No Padding -->
+                <div class="w-full">
+                    <img src="./image/hero.png" alt="EarCare Hero" class="w-full mb-2 h-auto object-cover">
+                </div>
+
+                <!-- Hero Content -->
+                <div class="px-4 max-[450px]:px-3">
+                    <div class="max-w-2xl mx-auto">
+
+                        <!-- Main Problem Statement -->
+                        <div class="text-center mb-4 max-[450px]:mb-4">
+                            <h2
+                                class="text-2xl font-bold font-arya text-brand-primary mb-6 max-[450px]:text-xl max-[450px]:mb-4">
+                                और सबसे बड़ी तकलीफ़…
+                            </h2>
+
+                            <!-- Problem Points -->
+                            <div class="space-y-4 text-left max-[450px]:space-y-3">
+                                <div
+                                    class="flex items-start gap-3 p-4 rounded-xl bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 max-[450px]:p-3">
+                                    <span class="text-xl min-w-[24px] max-[450px]:text-lg">👉</span>
+                                    <p class="text-base font-medium font-arya text-gray-800 max-[450px]:text-sm">
+                                        मशीन लगाने से भी पहले जैसा साफ़ सुनाई नहीं देता।
+                                    </p>
+                                </div>
+
+                                <div
+                                    class="flex items-start gap-3 p-4 rounded-xl bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 max-[450px]:p-3">
+                                    <span class="text-xl min-w-[24px] max-[450px]:text-lg">👉</span>
+                                    <p class="text-base font-medium font-arya text-gray-800 max-[450px]:text-sm">
+                                        मशीन हटाते ही कान में सीटी, भिन-भिन, घंटी जैसी आवाज़ें शुरू हो जाती हैं।
+                                    </p>
+                                </div>
+
+                                <div
+                                    class="flex items-start gap-3 p-4 rounded-xl bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 max-[450px]:p-3">
+                                    <span class="text-xl min-w-[24px] max-[450px]:text-lg">👉</span>
+                                    <p class="text-base font-medium font-arya text-gray-800 max-[450px]:text-sm">
+                                        और धीरे-धीरे सुनने की क्षमता और कम होने लगी है।
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Reassurance Section -->
+                        <div
+                            class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 border-2 border-brand-primary border-opacity-20 mb-8 max-[450px]:p-4 max-[450px]:mb-6">
+                            <h3
+                                class="text-xl font-bold font-arya text-brand-primary text-center mb-4 max-[450px]:text-lg max-[450px]:mb-3">
+                                आप अकेले नहीं हैं…
+                            </h3>
+
+                            <div class="space-y-3 max-[450px]:space-y-2">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-lg max-[450px]:text-base">📊</span>
+                                    <p class="text-base font-medium font-arya text-gray-700 max-[450px]:text-sm">
+                                        भारत में 6.3% लोग hearing problem से परेशान हैं,
+                                    </p>
+                                </div>
+
+                                <div class="flex items-start gap-3">
+                                    <span class="text-lg min-w-[24px] max-[450px]:text-base">⚠️</span>
+                                    <p class="text-base font-medium font-arya text-gray-700 max-[450px]:text-sm">
+                                        और hearing machine लगाने वाले अधिकतर लोगों को बार-बार infection, irritation और
+                                        भारी खर्च का सामना करना पड़ता है।
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Solution Teaser -->
+                        <div class="text-center">
+                            <div
+                                class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-6 border-2 border-green-500 border-opacity-30 max-[450px]:p-4">
+                                <h3
+                                    class="text-xl font-bold font-arya text-green-700 mb-3 max-[450px]:text-lg max-[450px]:mb-2">
+                                    लेकिन अब आपके कानों को बार-बार मशीन पर निर्भर रहने की ज़रूरत नहीं…
+                                </h3>
+
+                                <div class="flex items-center justify-center gap-2 text-green-600">
+                                    <span class="text-2xl max-[450px]:text-xl">✨</span>
+                                    <p class="text-lg font-semibold font-arya max-[450px]:text-base">
+                                        प्राकृतिक समाधान अब यहाँ है
+                                    </p>
+                                    <span class="text-2xl max-[450px]:text-xl">✨</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <!-- Decorative Divider -->
+            <div class="my-4 h-2  max-[450px]:my-3"
+                style="background: linear-gradient(to right, transparent, rgba(37, 99, 235, 0.3), transparent);"></div>
+
+
+            <!-- Product Showcase Section  -->
+            <section class="bg-brand-primary ">
+                <img src="./image/ProductShowCase.png" alt="EarCare Product Banner"
+                    class="w-full h-auto object-cover shadow-lg">
+
+                <!-- Natural Alternative Content -->
+                <div class="px-4 py-2 max-[450px]:px-3 max-[450px]:py-2">
+                    <div class="max-w-2xl mx-auto">
+                        <div class="bg-brand-primary rounded-2xl p-8 shadow-lg max-[450px]:p-6">
+                            <div class="text-center">
+                                <h2
+                                    class="text-2xl font-bold font-arya text-white mb-6 max-[450px]:text-xl max-[450px]:mb-4">
+                                    Hearing Machine का <span
+                                        style="color: #00ff19; font:bold ; font-weight: 800;">प्राकृतिक विकल्प</span>
+                                </h2>
+
+                                <p
+                                    class="text-2xl font-medium font-arya text-white leading-relaxed max-[450px]:text-xl">
+                                    जो कान की नसों, सुनने की स्पष्टता और अंदरूनी आवाज़ों को
+                                </p>
+
+                                <p
+                                    class="text-2xl font-bold font-arya mt-2 text-white max-[450px]:text-xl max-[450px]:mt-1">
+                                    <span style="color:#00ff19 ; font:bold ; font-weight: 800;">Natural</span> तरीके से
+                                    Support करता है।
+                                </p>
+
+                                <!-- Decorative elements -->
+                                <div class="flex justify-center items-center gap-3 mt-6 max-[450px]:mt-4">
+                                    <span class="text-2xl animate-pulse max-[450px]:text-xl">🌿</span>
+                                    <span class="text-2xl animate-pulse max-[450px]:text-xl"
+                                        style="color: #22c55e;">✨</span>
+                                    <span class="text-2xl animate-pulse max-[450px]:text-xl">🌿</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </section>
+            <!-- Decorative Divider -->
+            <div class="my-4 h-2  max-[450px]:my-3"
+                style="background: linear-gradient(to right, transparent, rgba(37, 99, 235, 0.3), transparent);"></div>
+
+            <!-- Ear Problems Section -->
+            <section class="px-4 max-[450px]:px-3">
+                <div class="max-w-2xl mx-auto">
+                    <!-- Section Header -->
+                    <div class="text-center mb-6">
+                        <div class="inline-flex items-center gap-2 px-6 py-3 mb-4 rounded-full"
+                            style="background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);">
+                            <span class="text-2xl">🔍</span>
+                            <span class="text-xl font-bold font-arya text-white max-[450px]:text-lg">
+                                Ear Care किन समस्याओं में मदद कर सकता है?
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Column Cards Container -->
+                    <div class="ear-problems-container">
+                        <div class="ear-problems-grid">
+
+                            <!-- Card 1: सीटी/घंटी की आवाज़ -->
+                            <div class="ear-problem-card">
+                                <div class="ear-problem-content">
+                                    <div class="ear-problem-text">
+                                        <span class="ear-problem-icon">✔</span>
+                                        <span>कान में सीटी / घंटी / भिन-भिन / भनभनाहट</span>
+                                    </div>
+                                </div>
+                                <img src="./image/Problem1.png" alt="कान में सीटी की आवाज़" class="ear-problem-image">
+                            </div>
+
+                            <!-- Card 2: कम सुनाई देना -->
+                            <div class="ear-problem-card">
+                                <div class="ear-problem-content">
+                                    <div class="ear-problem-text">
+                                        <span class="ear-problem-icon">✔</span>
+                                        <span>कम सुनाई देना</span>
+                                    </div>
+                                </div>
+                                <img src="./image/Problem2.png" alt="कम सुनाई देना" class="ear-problem-image">
+                            </div>
+
+                            <!-- Card 3: शब्द कट-कटकर सुनाई देना -->
+                            <div class="ear-problem-card">
+                                <div class="ear-problem-content">
+                                    <div class="ear-problem-text">
+                                        <span class="ear-problem-icon">✔</span>
+                                        <span>शब्द कट-कटकर सुनाई देना</span>
+                                    </div>
+                                </div>
+                                <img src="./image/Problem3.png" alt="शब्द कट-कटकर सुनाई देना" class="ear-problem-image">
+                            </div>
+
+                            <!-- Card 4: कान में भारीपन -->
+                            <div class="ear-problem-card">
+                                <div class="ear-problem-content">
+                                    <div class="ear-problem-text">
+                                        <span class="ear-problem-icon">✔</span>
+                                        <span>कान में भारीपन / pressure</span>
+                                    </div>
+                                </div>
+                                <img src="./image/Problem4.png" alt="कान में भारीपन" class="ear-problem-image">
+                            </div>
+
+                            <!-- Card 5: दिमागी तनाव -->
+                            <div class="ear-problem-card">
+                                <div class="ear-problem-content">
+                                    <div class="ear-problem-text">
+                                        <span class="ear-problem-icon">✔</span>
+                                        <span>दिमागी तनाव से होने वाली ringing</span>
+                                    </div>
+                                </div>
+                                <img src="./image/Problem5.png" alt="दिमागी तनाव" class="ear-problem-image">
+                            </div>
+
+                            <!-- Card 6: सुनने की क्षमता घट जाना -->
+                            <div class="ear-problem-card">
+                                <div class="ear-problem-content">
+                                    <div class="ear-problem-text">
+                                        <span class="ear-problem-icon">✔</span>
+                                        <span>सुनने की क्षमता घट जाना</span>
+                                    </div>
+                                </div>
+                                <img src="./image/Problem6.png" alt="सुनने की क्षमता घट जाना" class="ear-problem-image">
+                            </div>
+
+                            <!-- Card 7: मशीन हटाते ही गूंजना -->
+                            <div class="ear-problem-card">
+                                <div class="ear-problem-content">
+                                    <div class="ear-problem-text">
+                                        <span class="ear-problem-icon">✔</span>
+                                        <span>मशीन हटाते ही कान में गूंजना</span>
+                                    </div>
+                                </div>
+                                <img src="./image/Problem7.png" alt="मशीन हटाते ही गूंजना" class="ear-problem-image">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Decorative Divider -->
+            <div class="my-4 h-2  max-[450px]:my-3"
+                style="background: linear-gradient(to right, transparent, rgba(37, 99, 235, 0.3), transparent);"></div>
+
+            <!-- Benefits of Product Section -->
+            <section class="px-4">
+                <div class="benefits-container" id="benefitsSection">
+                    <div class="benefits-header">
+                        <h2 class="benefits-title font-arya">
+                            <span class="star-icon">⭐</span> Combined Benefits (Simple & Realistic)
+                        </h2>
+                        <p class="benefits-subtitle font-arya">प्राकृतिक समाधान के वास्तविक फायदे</p>
+                    </div>
+
+                    <div class="benefit-item-card">
+                        <div class="benefit-content">
+                            <div class="benefit-icon-wrapper">
+                                🔕
+                            </div>
+                            <div class="benefit-text font-arya">
+                                कान में बजने वाली आवाज़ें हल्की पड़ती हैं
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item-card">
+                        <div class="benefit-content">
+                            <div class="benefit-icon-wrapper">
+                                🔊
+                            </div>
+                            <div class="benefit-text font-arya">
+                                सुनाई साफ़-साफ़ आने लगता है
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item-card">
+                        <div class="benefit-content">
+                            <div class="benefit-icon-wrapper">
+                                ⛅
+                            </div>
+                            <div class="benefit-text font-arya">
+                                Heavy / pressure feeling कम
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item-card">
+                        <div class="benefit-content">
+                            <div class="benefit-icon-wrapper">
+                                🆓
+                            </div>
+                            <div class="benefit-text font-arya">
+                                मशीन-dependent life से छुटकारा
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item-card">
+                        <div class="benefit-content">
+                            <div class="benefit-icon-wrapper">
+                                😌
+                            </div>
+                            <div class="benefit-text font-arya">
+                                कान हल्के, शांत और आरामदायक महसूस होते हैं
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Decorative Divider -->
+            <div class="my-4 h-2  max-[450px]:my-3"
+                style="background: linear-gradient(to right, transparent, rgba(37, 99, 235, 0.3), transparent);"></div>
+
+            <!-- How to Use Section  -->
+            <section class="px-4 max-[450px]:px-3">
+                <div class="max-w-xl mx-auto">
+                    <!-- Section Header -->
+                    <div class="text-center mb-6">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 mb-3 rounded-full"
+                            style="background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);">
+                            <span class="text-lg">📋</span>
+                            <span class="text-lg font-bold font-arya text-white max-[450px]:text-base">
+                                HOW TO USE
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Compact Usage Grid -->
+                    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl p-6 border border-brand-primary border-opacity-20 max-[450px]:p-4"
+                        style="box-shadow: 0 8px 25px rgba(37, 99, 235, 0.08);">
+
+                        <!-- 2x2 Grid -->
+                        <div class="grid grid-cols-2 gap-4 max-[450px]:gap-3">
+
+                            <!-- Card 1: Daily -->
+                            <div class="text-center p-4 rounded-lg max-[450px]:p-3"
+                                style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 1px solid #3b82f6;">
+                                <div class="text-2xl mb-2 max-[450px]:text-xl">⏰</div>
+                                <h3 class="text-base font-bold font-arya text-brand-accent max-[450px]:text-base">
+                                    2 Time Daily
+                                </h3>
+                            </div>
+
+                            <!-- Card 2: Capsule -->
+                            <div class="text-center p-4 rounded-lg max-[450px]:p-3"
+                                style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1px solid #16a34a;">
+                                <div class="text-2xl mb-2 max-[450px]:text-xl">💊</div>
+                                <h3 class="text-sm font-bold font-arya text-brand-accent max-[450px]:text-base">
+                                    1 Capsule
+                                </h3>
+                            </div>
+
+                            <!-- Card 3: After Food -->
+                            <div class="text-center p-4 rounded-lg max-[450px]:p-3"
+                                style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1px solid #16a34a;">
+                                <div class="text-2xl mb-2 max-[450px]:text-xl">🍽️</div>
+                                <h3 class="text-sm font-bold font-arya text-brand-accent max-[450px]:text-base">
+                                    After Food
+                                </h3>
+                            </div>
+
+                            <!-- Card 4: Duration -->
+                            <div class="text-center p-4 rounded-lg max-[450px]:p-3"
+                                style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 1px solid #3b82f6;">
+                                <div class="text-2xl mb-2 max-[450px]:text-xl">📅</div>
+                                <h3 class="text-sm font-bold font-arya text-brand-accent max-[450px]:text-base">
+                                    45-60 Days
+                                </h3>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Note -->
+                        <div class="text-center mt-4 max-[450px]:mt-3">
+                            <div class="inline-flex items-center gap-1 px-5 py-2 rounded-full text-lg font-bold font-arya text-white max-[450px]:text-base"
+                                style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+                                <span>✅</span>
+                                <span>नियमित सेवन करें, अनुशासन के साथ समय पर लें तभी दवा काम करेगी</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Analysis Section -->
+            <section class="max-w-xl mx-auto p-8 rounded-3xl"
+                style="background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);">
+                <div class="text-center mb-8">
+                    <h1 class="text-3xl font-bold mb-3"
+                        style="background: linear-gradient(135deg, #2563eb, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                        🩺 Ear Health Analysis
+                    </h1>
+                    <p class="text-gray-600">Professional diagnostic assessment for your hearing health</p>
+                </div>
+
+                <!-- ISSUES SLIDERS -->
+                <div id="sliders" class="space-y-6">
+
+                    <div class="slider-container">
+                        <div class="flex justify-between items-center mb-3">
+                            <label class="flex items-center gap-3 font-semibold text-gray-700">
+                                <span class="text-2xl">👂</span>
+                                <span>Listening Problem:</span>
+                            </label>
+                            <span id="v1" class="health-badge">0%</span>
+                        </div>
+                        <input type="range" id="listening" min="0" max="100" value="0"
+                            class="w-full modern-slider slider">
+                    </div>
+
+                    <div class="slider-container">
+                        <div class="flex justify-between items-center mb-3">
+                            <label class="flex items-center gap-3 font-semibold text-gray-700">
+                                <span class="text-2xl">🔔</span>
+                                <span>Tinnitus (Ringing):</span>
+                            </label>
+                            <span id="v2" class="health-badge"
+                                style="background: linear-gradient(135deg, #f59e0b, #f97316);">0%</span>
+                        </div>
+                        <input type="range" id="tinnitus" min="0" max="100" value="0"
+                            class="w-full modern-slider slider"
+                            style="background: linear-gradient(to right, #e2e8f0 0%, #f59e0b 0%);">
+                    </div>
+
+                    <div class="slider-container">
+                        <div class="flex justify-between items-center mb-3">
+                            <label class="flex items-center gap-3 font-semibold text-gray-700">
+                                <span class="text-2xl">🦠</span>
+                                <span>Infection Signs:</span>
+                            </label>
+                            <span id="v3" class="health-badge"
+                                style="background: linear-gradient(135deg, #ef4444, #dc2626);">0%</span>
+                        </div>
+                        <input type="range" id="infection" min="0" max="100" value="0"
+                            class="w-full modern-slider slider"
+                            style="background: linear-gradient(to right, #e2e8f0 0%, #ef4444 0%);">
+                    </div>
+
+                    <div class="slider-container">
+                        <div class="flex justify-between items-center mb-3">
+                            <label class="flex items-center gap-3 font-semibold text-gray-700">
+                                <span class="text-2xl">🍬</span>
+                                <span>Gum/Wax Issues:</span>
+                            </label>
+                            <span id="v4" class="health-badge"
+                                style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">0%</span>
+                        </div>
+                        <input type="range" id="gum" min="0" max="100" value="0" class="w-full modern-slider slider"
+                            style="background: linear-gradient(to right, #e2e8f0 0%, #8b5cf6 0%);">
+                    </div>
+
+                    <div class="slider-container">
+                        <div class="flex justify-between items-center mb-3">
+                            <label class="flex items-center gap-3 font-semibold text-gray-700">
+                                <span class="text-2xl">💧</span>
+                                <span>Water in Ear:</span>
+                            </label>
+                            <span id="v5" class="health-badge"
+                                style="background: linear-gradient(135deg, #06b6d4, #0ea5e9);">0%</span>
+                        </div>
+                        <input type="range" id="water" min="0" max="100" value="0" class="w-full modern-slider slider"
+                            style="background: linear-gradient(to right, #e2e8f0 0%, #06b6d4 0%);">
+                    </div>
+
+                    <div class="slider-container">
+                        <div class="flex justify-between items-center mb-3">
+                            <label class="flex items-center gap-3 font-semibold text-gray-700">
+                                <span class="text-2xl">🩸</span>
+                                <span>Blood/Discharge:</span>
+                            </label>
+                            <span id="v6" class="health-badge"
+                                style="background: linear-gradient(135deg, #dc2626, #b91c1c);">0%</span>
+                        </div>
+                        <input type="range" id="blood" min="0" max="100" value="0" class="w-full modern-slider slider"
+                            style="background: linear-gradient(to right, #e2e8f0 0%, #dc2626 0%);">
+                    </div>
+
+                </div>
+
+                <div class="my-8 h-px"
+                    style="background: linear-gradient(to right, transparent, rgba(37, 99, 235, 0.3), transparent);">
+                </div>
+
+                <!-- ENHANCED RESULT BOX WITH DYNAMIC COLORS -->
+                <div class="p-6 rounded-2xl border-2 mb-6 transition-all duration-500 ease-in-out" id="resultBox"
+                    style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-color: #e2e8f0;">
+                    <div class="text-center mb-4">
+                        <h2 class="text-3xl font-bold mb-3 flex items-center justify-center gap-3">
+                            <span class="text-4xl">🎯</span>
+                            <span>Health Score: </span>
+                            <span id="healthScore" class="transition-colors duration-300"
+                                style="color: var(--brand-primary);">0%</span>
+                        </h2>
+                        <div class="flex items-center justify-center gap-2 mb-3">
+                            <span class="text-lg font-semibold">Status:</span>
+                            <span id="category"
+                                class="px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 transform scale-105"></span>
+                        </div>
+                        <p class="text-lg font-semibold mb-1 transition-colors duration-300" id="alertText"></p>
+                    </div>
+
+                    <div class="text-center p-4 rounded-xl"
+                        style="background: rgba(255,255,255,0.8); border: 1px solid #e2e8f0;">
+                        <p class="text-gray-700 leading-relaxed" id="message">
+                            🔍 Adjust the sliders above to assess your ear health condition
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ENHANCED CTA BUTTONS -->
+                <div class="space-y-4">
+                    <button
+                        class="w-full py-4 rounded-2xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center justify-center gap-3"
+                        style="background: linear-gradient(135deg, #2563eb, #3b82f6); color: white; border: none;"
+                        onclick="scrollToContact()">
+                        <span class="text-2xl">📋</span>
+                        <span>Get Professional Consultation</span>
+                        <span class="text-xl animate-pulse">✨</span>
+                    </button>
+                </div>
+            </section>
+            <!-- Decorative Divider -->
+            <div class="my-4 h-2  max-[450px]:my-3"
+                style="background: linear-gradient(to right, transparent, rgba(37, 99, 235, 0.3), transparent);"></div>
+
+            <!-- Why Ear Care Comparison Section -->
+            <section class="px-4 max-[450px]:px-3">
+                <div class="max-w-4xl mx-auto">
+                    <!-- Section Header -->
+                    <div class="text-center mb-8">
+                        <h2 class="text-4xl font-bold font-arya mb-4 max-[450px]:text-3xl"
+                            style="background: linear-gradient(135deg, #2563eb, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                            ⭐ Why Ear Care?
+                        </h2>
+                        <p class="text-xl text-gray-600 font-arya max-[450px]:text-lg">
+                            Machine vs Natural Support
+                        </p>
+                    </div>
+
+                    <!-- Comparison Table -->
+                    <div class="grid md:grid-cols-1 gap-6 max-[450px]:gap-4">
+
+                        <!-- Hearing Machine (Left Side) -->
+                        <div class="comparison-card negative-card p-6 rounded-2xl border-2 max-[450px]:p-4"
+                            style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border-color: #fca5a5; box-shadow: 0 8px 25px rgba(239, 68, 68, 0.1);">
+                            <div class="text-center mb-6">
+                                <div class="text-5xl mb-3 max-[450px]:text-4xl">🛑</div>
+                                <h3 class="text-2xl font-bold font-arya max-[450px]:text-xl" style="color: #dc2626;">
+                                    Hearing Machine
+                                </h3>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="comparison-item flex items-start gap-3">
+                                    <span class="text-xl flex-shrink-0 mt-1">❌</span>
+                                    <p class="text-lg font-arya text-gray-700 max-[450px]:text-base">
+                                        Infection बढ़ाती है
+                                    </p>
+                                </div>
+
+                                <div class="comparison-item flex items-start gap-3">
+                                    <span class="text-xl flex-shrink-0 mt-1">❌</span>
+                                    <p class="text-lg font-arya text-gray-700 max-[450px]:text-base">
+                                        कान में खुजली और दर्द
+                                    </p>
+                                </div>
+
+                                <div class="comparison-item flex items-start gap-3">
+                                    <span class="text-xl flex-shrink-0 mt-1">❌</span>
+                                    <p class="text-lg font-arya text-gray-700 max-[450px]:text-base">
+                                        बार-बार खराब होने की परेशानी
+                                    </p>
+                                </div>
+
+                                <div class="comparison-item flex items-start gap-3">
+                                    <span class="text-xl flex-shrink-0 mt-1">💸</span>
+                                    <p class="text-lg font-arya text-gray-700 max-[450px]:text-base">
+                                        बहुत महंगी
+                                    </p>
+                                </div>
+
+                                <div class="comparison-item flex items-start gap-3">
+                                    <span class="text-xl flex-shrink-0 mt-1">⏳</span>
+                                    <p class="text-lg font-arya text-gray-700 max-[450px]:text-base">
+                                        Long-term solution नहीं
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ear Care Capsules (Right Side) -->
+                        <div class="comparison-card positive-card p-6 rounded-2xl border-2 max-[450px]:p-4"
+                            style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-color: #86efac; box-shadow: 0 8px 25px rgba(34, 197, 94, 0.15);">
+                            <div class="text-center mb-6">
+                                <div class="text-5xl mb-3 max-[450px]:text-4xl">🌿</div>
+                                <h3 class="text-2xl font-bold font-arya max-[450px]:text-xl" style="color: #16a34a;">
+                                    Ear Care Capsules
+                                </h3>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="comparison-item flex items-start gap-3">
+                                    <span class="text-xl flex-shrink-0 mt-1">✅</span>
+                                    <p class="text-lg font-arya text-gray-700 max-[450px]:text-base">
+                                        कान की नसों को अंदर से support
+                                    </p>
+                                </div>
+
+                                <div class="comparison-item flex items-start gap-3">
+                                    <span class="text-xl flex-shrink-0 mt-1">🔇</span>
+                                    <p class="text-lg font-arya text-gray-700 max-[450px]:text-base">
+                                        Tinnitus (कान की आवाज़ें) में धीरे-धीरे राहत
+                                    </p>
+                                </div>
+
+                                <div class="comparison-item flex items-start gap-3">
+                                    <span class="text-xl flex-shrink-0 mt-1">👂</span>
+                                    <p class="text-lg font-arya text-gray-700 max-[450px]:text-base">
+                                        सुनने की clarity बेहतर महसूस
+                                    </p>
+                                </div>
+
+                                <div class="comparison-item flex items-start gap-3">
+                                    <span class="text-xl flex-shrink-0 mt-1">💚</span>
+                                    <p class="text-lg font-arya text-gray-700 max-[450px]:text-base">
+                                        कोई दर्द, irritation या side effect नहीं
+                                    </p>
+                                </div>
+
+                                <div class="comparison-item flex items-start gap-3">
+                                    <span class="text-xl flex-shrink-0 mt-1">🌱</span>
+                                    <p class="text-lg font-arya text-gray-700 max-[450px]:text-base">
+                                        Natural & Ayurvedic formulation
+                                    </p>
+                                </div>
+
+                                <div class="comparison-item flex items-start gap-3">
+                                    <span class="text-xl flex-shrink-0 mt-1">🎯</span>
+                                    <p class="text-lg font-arya text-gray-700 max-[450px]:text-base">
+                                        Long-term healthy ear support
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom CTA -->
+                    <div class="text-center mt-8">
+                        <button
+                            class="px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center justify-center gap-3 mx-auto max-[450px]:px-6 max-[450px]:py-3"
+                            style="background: linear-gradient(135deg, #16a34a, #22c55e); color: white; border: none;"
+                            onclick="scrollToContact()">
+                            <span class="text-2xl">🌿</span>
+                            <span class="font-arya">Natural Solution चुनें</span>
+                            <span class="text-xl animate-pulse">✨</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <!-- Decorative Divider -->
+            <div class="my-4 h-2  max-[450px]:my-3"
+                style="background: linear-gradient(to right, transparent, rgba(37, 99, 235, 0.3), transparent);"></div>
+
+            <!-- Ingredients Section -->
+            <section class="px-4 ">
+                <div class="ingredients-container">
+                    <div class="ingredients-header">
+                        <h2 class="ingredients-title font-arya">
+                            🌱 Key Ingredients (Only for Ear Health)
+                        </h2>
+                        <p class="ingredients-subtitle font-arya">प्राकृतिक जड़ी-बूटियों का शक्तिशाली मिश्रण</p>
+                    </div>
+
+                    <div class="ingredient-card">
+                        <div class="ingredient-header">
+                            <img src="./image/Ind1.png" alt="तुलसी अर्क" class="ingredient-image">
+                            <h3 class="ingredient-name font-arya">
+                                🌿 तुलसी अर्क
+                            </h3>
+                        </div>
+                        <ul class="benefits-list">
+                            <li class="benefit-item font-arya">
+                                <span class="benefit-icon">✔</span>
+                                <span>कान की हल्की सूजन शांत</span>
+                            </li>
+                            <li class="benefit-item font-arya">
+                                <span class="benefit-icon">✔</span>
+                                <span>घनघनाहट / भनभनाहट में आराम</span>
+                            </li>
+                            <li class="benefit-item font-arya">
+                                <span class="benefit-icon">✔</span>
+                                <span>blockage feeling हल्की करे</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="ingredient-card">
+                        <div class="ingredient-header">
+                            <img src="./image/Ind2.avif" alt="अश्वगंधा" class="ingredient-image">
+                            <h3 class="ingredient-name font-arya">
+                                🌿 अश्वगंधा
+                            </h3>
+                        </div>
+                        <ul class="benefits-list">
+                            <li class="benefit-item font-arya">
+                                <span class="benefit-icon">✔</span>
+                                <span>Stress-related ringing कम करे</span>
+                            </li>
+                            <li class="benefit-item font-arya">
+                                <span class="benefit-icon">✔</span>
+                                <span>नसों को calm करके आवाज़ें हल्की करे</span>
+                            </li>
+                            <li class="benefit-item font-arya">
+                                <span class="benefit-icon">✔</span>
+                                <span>सुनने की clarity सपोर्ट करे</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="ingredient-card">
+                        <div class="ingredient-header">
+                            <img src="./image/Ind3.png" alt="हरिद्रा (हल्दी)" class="ingredient-image">
+                            <h3 class="ingredient-name font-arya">
+                                🌿 हरिद्रा (हल्दी)
+                            </h3>
+                        </div>
+                        <ul class="benefits-list">
+                            <li class="benefit-item font-arya">
+                                <span class="benefit-icon">✔</span>
+                                <span>अंदरूनी सूजन कम</span>
+                            </li>
+                            <li class="benefit-item font-arya">
+                                <span class="benefit-icon">✔</span>
+                                <span>भारीपन / pressure में राहत</span>
+                            </li>
+                            <li class="benefit-item font-arya">
+                                <span class="benefit-icon">✔</span>
+                                <span>हल्की irritation शांत</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="ingredient-card">
+                        <div class="ingredient-header">
+                            <img src="./image/Ind4.png" alt="गिलोय" class="ingredient-image">
+                            <h3 class="ingredient-name font-arya">
+                                🌿 गिलोय
+                            </h3>
+                        </div>
+                        <ul class="benefits-list">
+                            <li class="benefit-item font-arya">
+                                <span class="benefit-icon">✔</span>
+                                <span>कान की immunity strong</span>
+                            </li>
+                            <li class="benefit-item font-arya">
+                                <span class="benefit-icon">✔</span>
+                                <span>Age-related सुनने की कमजोरी में support</span>
+                            </li>
+                            <li class="benefit-item font-arya">
+                                <span class="benefit-icon">✔</span>
+                                <span>बार-बार की irritation कम</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <!-- Decorative Divider -->
+            <div class="my-4 h-2  max-[450px]:my-3"
+                style="background: linear-gradient(to right, transparent, rgba(37, 99, 235, 0.3), transparent);"></div>
+
+            <!-- Certificates Section -->
+            <section class="px-4 max-[450px]:px-3">
+                <div class="max-w-lg mx-auto">
+                    <!-- Section Header with Brand Integration -->
+                    <div class="text-center p-5 mb-4">
+                        <!-- Brand Logo and Name Combined -->
+                        <div class="flex items-center justify-center gap-4 mb-4">
+                            <div
+                                class="creative-logo glow-border w-12 h-12 rounded-full flex items-center justify-center shadow-brand border-2 border-green-500 border-opacity-50 overflow-visible max-[450px]:w-10 max-[450px]:h-10">
+                                <span class="ear-symbol text-xl">👂</span>
+                                <div class="sound-waves">
+                                    <div class="wave"></div>
+                                    <div class="wave"></div>
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start">
+                                <h1 class="text-3xl font-bold font-arya text-green-600 max-[450px]:text-4xl">
+                                    Ear Care
+                                </h1>
+                                <p class="text-sm text-gray-500 font-arya max-[450px]:text-sm">
+                                    Premium Quality
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Achievement Badge -->
+                        <div class="inline-flex items-center gap-2 px-4 py-2 mb-4 rounded-full"
+                            style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 2px solid #16a34a; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.2);">
+                            <span class="text-2xl">🏆</span>
+                            <span class="text-lg font-bold font-arya text-green-700 max-[450px]:text-base">
+                                Certified Excellence Achieved
+                            </span>
+                        </div>
+
+                        <h2 class="text-xl font-bold font-arya mb-2 max-[450px]:text-lg" style="color: #16a34a;">
+                            🔐 100% Safe & Certified Product
+                        </h2>
+                        <p class="text-sm text-gray-600 font-arya max-[450px]:text-xl">
+                            आपका भरोसा ही हमारी प्राथमिकता है - प्रमाणित गुणवत्ता के साथ
+                        </p>
+                    </div>
+
+                    <!-- Achievement Showcase -->
+                    <div
+                        class="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-6 mb-6 border-2 border-green-200 max-[450px]:p-4">
+                        <div class="text-center mb-4">
+                            <h3 class="text-lg font-bold font-arya text-gray-800 max-[450px]:text-base">
+                                🌟 Our Product Has Successfully Achieved These Certifications 🌟
+                            </h3>
+                        </div>
+
+                        <!-- Certificates Images with Achievement Context -->
+                        <div class="flex justify-center flex-wrap max-[450px]:flex-row gap-3 mb-4 max-[450px]:gap-2">
+                            <div class="certificate-achievement flex flex-col items-center">
+                                <img src="./image/1.png" alt="Certificate 1"
+                                    class="w-16 h-16 object-contain rounded-lg max-[450px]:w-16 max-[450px]:h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 shadow-lg border-2 border-green-300">
+                                <span class="text-xs text-green-600 font-semibold mt-1 max-[450px]:text-[10px]">Achieved
+                                    ✓</span>
+                            </div>
+                            <div class="certificate-achievement flex flex-col items-center">
+                                <img src="./image/2.png" alt="Certificate 2"
+                                    class="w-16 h-16 object-contain rounded-lg max-[450px]:w-16 max-[450px]:h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 shadow-lg border-2 border-blue-300">
+                                <span class="text-xs text-blue-600 font-semibold mt-1 max-[450px]:text-[10px]">Achieved
+                                    ✓</span>
+                            </div>
+                            <div class="certificate-achievement flex flex-col items-center">
+                                <img src="./image/3.png" alt="Certificate 3"
+                                    class="w-16 h-16 object-contain rounded-lg max-[450px]:w-16 max-[450px]:h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 shadow-lg border-2 border-orange-300">
+                                <span
+                                    class="text-xs text-orange-600 font-semibold mt-1 max-[450px]:text-[10px]">Achieved
+                                    ✓</span>
+                            </div>
+                            <div class="certificate-achievement flex flex-col items-center">
+                                <img src="./image/4.png" alt="Certificate 4"
+                                    class="w-16 h-16 object-contain rounded-lg max-[450px]:w-16 max-[450px]:h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 shadow-lg border-2 border-red-300">
+                                <span class="text-xs text-red-600 font-semibold mt-1 max-[450px]:text-[10px]">Achieved
+                                    ✓</span>
+                            </div>
+                            <div class="certificate-achievement flex flex-col items-center">
+                                <img src="./image/6.png" alt="Certificate 5"
+                                    class="w-16 h-16 object-contain rounded-lg max-[450px]:w-16 max-[450px]:h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 shadow-lg border-2 border-purple-300">
+                                <span
+                                    class="text-xs text-purple-600 font-semibold mt-1 max-[450px]:text-[10px]">Achieved
+                                    ✓</span>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <p class="text-sm font-semibold font-arya text-green-700 max-[450px]:text-xs">
+                                ✨ हमारे उत्पाद ने सभी आवश्यक प्रमाणन सफलतापूर्वक प्राप्त किए हैं ✨
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Trust Features with Achievement Theme -->
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3 p-4 rounded-lg transition-all duration-300 hover:scale-102"
+                            style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1px solid #16a34a;">
+                            <span class="text-xl">🌿</span>
+                            <div class="flex-1">
+                                <span
+                                    class="text-base font-arya font-semibold text-gray-700 max-[450px]:text-sm">Ayurvedic
+                                    Certification</span>
+                                <p class="text-xs text-green-600 font-medium">Successfully Achieved</p>
+                            </div>
+                            <span class="text-green-600 font-bold">✓</span>
+                        </div>
+
+                        <div class="flex items-center gap-3 p-4 rounded-lg transition-all duration-300 hover:scale-102"
+                            style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 1px solid #3b82f6;">
+                            <span class="text-xl">🏭</span>
+                            <div class="flex-1">
+                                <span class="text-base font-arya font-semibold text-gray-700 max-[450px]:text-sm">GMP
+                                    Certified</span>
+                                <p class="text-xs text-blue-600 font-medium">Manufacturing Excellence</p>
+                            </div>
+                            <span class="text-blue-600 font-bold">✓</span>
+                        </div>
+
+                        <div class="flex items-center gap-3 p-4 rounded-lg transition-all duration-300 hover:scale-102"
+                            style="background: linear-gradient(135deg, #fef7ed 0%, #fed7aa 100%); border: 1px solid #f59e0b;">
+                            <span class="text-xl">🌍</span>
+                            <div class="flex-1">
+                                <span class="text-base font-arya font-semibold text-gray-700 max-[450px]:text-sm">ISO
+                                    International
+                                    Standard</span>
+                                <p class="text-xs text-orange-600 font-medium">Global Quality Recognition</p>
+                            </div>
+                            <span class="text-orange-600 font-bold">✓</span>
+                        </div>
+
+                        <div class="flex items-center gap-3 p-4 rounded-lg transition-all duration-300 hover:scale-102"
+                            style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 1px solid #3b82f6;">
+                            <span class="text-xl">🔬</span>
+                            <div class="flex-1">
+                                <span class="text-base font-arya font-semibold text-gray-700 max-[450px]:text-sm">Lab
+                                    Tested &
+                                    Verified</span>
+                                <p class="text-xs text-blue-600 font-medium">Scientific Validation</p>
+                            </div>
+                            <span class="text-blue-600 font-bold">✓</span>
+                        </div>
+
+                        <div class="flex items-center gap-3 p-4 rounded-lg transition-all duration-300 hover:scale-102"
+                            style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1px solid #16a34a;">
+                            <span class="text-xl">🚫</span>
+                            <div class="flex-1">
+                                <span class="text-base font-arya font-semibold text-gray-700 max-[450px]:text-sm">No
+                                    Steroids | No
+                                    Harmful Chemicals</span>
+                                <p class="text-xs text-green-600 font-medium">100% Safe & Natural</p>
+                            </div>
+                            <span class="text-green-600 font-bold">✓</span>
+                        </div>
+                    </div>
+
+                    <!-- Trust Seal -->
+                    <div class="mt-6 text-center">
+                        <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full"
+                            style="background: linear-gradient(135deg, #1e40af, #3b82f6); box-shadow: 0 8px 25px rgba(59, 130, 246, 0.25);">
+                            <span class="text-2xl">🛡️</span>
+                            <div class="text-white">
+                                <p class="text-lg font-bold font-arya max-[450px]:text-base">Ear Care - Trusted Brand
+                                </p>
+                                <p class="text-xs opacity-90">प्रमाणित गुणवत्ता की गारंटी</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Decorative Divider -->
+            <div class="my-4 h-2  max-[450px]:my-3"
+                style="background: linear-gradient(to right, transparent, rgba(37, 99, 235, 0.3), transparent);"></div>
+
+            <!-- 10% Discount Section -->
+            <section class="px-4 max-[450px]:px-3">
+                <div class="max-w-2xl mx-auto">
+                    <!-- Special Offer Banner -->
+                    <div class="text-center mb-8">
+                        <div class="inline-flex items-center gap-4 px-8 py-4 mb-4 rounded-full animate-pulse"
+                            style="background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%); box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);">
+                            <span class="text-3xl">🏷️</span>
+                            <span class="text-2xl font-bold font-arya text-white max-[450px]:text-xl">
+                                SPECIAL OFFER - 10% OFF
+                            </span>
+                        </div>
+                        <!-- Divider Line -->
+                        <div
+                            class="w-full h-1 bg-gradient-to-r from-transparent via-brand-primary to-transparent opacity-30 mb-6">
+                        </div>
+                    </div>
+
+                    <!-- Main Content Layout -->
+                    <div class="bg-gradient-to-r from-blue-50 to-green-50 rounded-3xl p-8 border-2 border-brand-primary border-opacity-30 max-[450px]:p-6"
+                        style="box-shadow: 0 12px 40px rgba(37, 99, 235, 0.1);">
+
+                        <!-- Top Section: Image and Content Side by Side -->
+                        <div
+                            class="grid grid-cols-2 items-center md:grid-cols-2 gap-8 items-center mb-8 max-[450px]:gap-6">
+
+                            <!-- Product Image -->
+                            <div class="flex justify-center">
+                                <div class="relative">
+                                    <img src="./image/product.avif" alt="Ear Care Product"
+                                        class="w-56 h-56 object-cover rounded-3xl max-[450px]:w-48 max-[450px]:h-48 hover:scale-105 transition-transform duration-300"
+                                        style="filter: drop-shadow(0 12px 25px rgba(37, 99, 235, 0.3)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.1));">
+                                    <div class="absolute -top-3 -right-3 text-white text-sm font-bold px-3 py-2 rounded-full animate-bounce"
+                                        style="background: linear-gradient(135deg, #16a34a, #22c55e);">
+                                        10% OFF
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Content Side -->
+                            <div class="text-center md:text-left">
+                                <!-- Main CTA -->
+                                <h3 class="text-2xl font-bold font-arya text-brand-accent mb-2 max-[450px]:text-xl">
+                                    🛒 Order Now
+                                </h3>
+                                <p class="text-lg font-arya text-brand-primary mb-6 max-[450px]:text-base">
+                                    Natural Support
+                                </p>
+
+                                <!-- Comparison Points -->
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-center md:justify-start gap-3 p-3 rounded-lg"
+                                        style="background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%); border: 1px solid #dc2626;">
+                                        <span class="text-xl">❌</span>
+                                        <span class="text-base font-arya text-brand-accent max-[450px]:text-sm">
+                                            Machine Failed?
+                                        </span>
+                                    </div>
+                                    <div class="flex items-center justify-center md:justify-start gap-3 p-3 rounded-lg"
+                                        style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1px solid #16a34a;">
+                                        <span class="text-xl">✅</span>
+                                        <span
+                                            class="text-base font-arya font-semibold text-brand-accent max-[450px]:text-sm">
+                                            Try Ear Care
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Section: Full Width Order Button -->
+                        <div class="text-center">
+                            <button onclick="scrollToContact()"
+                                class="text-white px-12 py-4 rounded-xl font-arya font-bold text-xl transition-all duration-300 hover:scale-105 hover:shadow-xl max-[450px]:text-lg max-[450px]:px-8 max-[450px]:py-3 w-full"
+                                style="background: linear-gradient(135deg, #16a34a, #22c55e); box-shadow: 0 6px 20px rgba(34, 197, 94, 0.3);">
+                                <span class="flex items-center justify-center gap-3">
+                                    <span>🛒</span>
+                                    <span>आज ही मंगवाएँ - 10% छूट के साथ</span>
+                                    <span class="animate-pulse">🔥</span>
+                                </span>
+                            </button>
+
+                            <!-- Discount Highlight -->
+                            <p class="text-sm text-brand-primary font-semibold mt-3 max-[450px]:text-xs">
+                                💰 Special Price - Today Only!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Decorative Divider -->
+            <div class="my-4 h-2  max-[450px]:my-3"
+                style="background: linear-gradient(to right, transparent, rgba(37, 99, 235, 0.3), transparent);"></div>
+
+            <!-- Customer Reviews Section -->
+            <section class="px-4 ">
+                <div class="reviews-container">
+                    <div class="reviews-header">
+                        <h2 class="reviews-title font-arya">
+                            🌟 Real User Experiences
+                        </h2>
+                        <p class="reviews-subtitle font-arya">सच्चे ग्राहकों के अनुभव</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <img src="./image/customer1.avif" alt="कविता शर्मा" class="customer-avatar">
+                            <div class="customer-info">
+                                <h4 class="font-arya">🗣️ कविता शर्मा</h4>
+                                <p class="location font-arya">जयपुर</p>
+                            </div>
+                        </div>
+                        <p class="review-text font-arya">
+                            मशीन लगाने से infection बढ़ जाता था। Ear Care शुरू किया और 3 हफ्तों में आवाज़ें कम होने
+                            लगीं। अब मशीन कम
+                            इस्तेमाल करनी पड़ती है।
+                        </p>
+                        <div class="review-rating">
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <img src="./image/customer2.avif" alt="सूरज पटेल" class="customer-avatar">
+                            <div class="customer-info">
+                                <h4 class="font-arya">🗣️ सूरज पटेल</h4>
+                                <p class="location font-arya">दिल्ली</p>
+                            </div>
+                        </div>
+                        <p class="review-text font-arya">
+                            रात में कान में घंटी बजती थी। नींद खराब हो जाती थी। Ear Care ने उस आवाज़ को धीरे-धीरे कम कर
+                            दिया।
+                        </p>
+                        <div class="review-rating">
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <img src="./image/customer3.jpeg" alt="रीना मिश्रा" class="customer-avatar">
+                            <div class="customer-info">
+                                <h4 class="font-arya">🗣️ रीना मिश्रा</h4>
+                                <p class="location font-arya">भोपाल</p>
+                            </div>
+                        </div>
+                        <p class="review-text font-arya">
+                            बातें दो-तीन बार सुननी पड़ती थीं। Capsule लेने से clarity में noticeable फर्क आया। अब बातचीत
+                            आसान हो गई
+                            है।
+                        </p>
+                        <div class="review-rating">
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Decorative Divider -->
+            <div class="my-4 h-2  max-[450px]:my-3"
+                style="background: linear-gradient(to right, transparent, rgba(37, 99, 235, 0.3), transparent);"></div>
+
+            <!-- Contact Section -->
+            <section
+                class="px-4 py-4 bg-brand-primary text-white border-b-2 border-brand-light max-[450px]:py-6 max-[450px]:px-3"
+                id="contact">
+                <form id="contactForm">
+                    <div class="mb-4 max-[450px]:mb-3">
+                        <label for="name"
+                            class="block mb-2 text-xl text-white font-arya font-semibold max-[450px]:text-lg max-[450px]:mb-1">आपका
+                            नाम:</label>
+                        <input type="text" id="name" name="name" required placeholder="अपना नाम लिखें"
+                            class="w-full p-3 border-none rounded text-lg text-brand-primary placeholder-brand-muted font-arya max-[450px]:p-2 max-[450px]:text-base bg-brand-light">
+                    </div>
+                    <div class="mb-4 max-[450px]:mb-3">
+                        <label for="phone"
+                            class="block mb-2 text-xl text-white font-arya font-semibold max-[450px]:text-lg max-[450px]:mb-1">फोन
+                            नंबर:</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="अपना फोन नंबर लिखें"
+                            class="w-full p-3 border-none rounded text-lg text-brand-primary placeholder-brand-muted font-arya max-[450px]:p-2 max-[450px]:text-base bg-brand-light">
+                    </div>
+                    <button type="submit"
+                        class="bg-brand-secondary text-brand-accent font-bold border-none py-4 px-8 rounded text-2xl font-arya cursor-pointer w-full mt-4 transition-all duration-300 hover:bg-opacity-90 max-[450px]:py-3 max-[450px]:px-4 max-[450px]:text-xl max-[450px]:mt-3"
+                        onclick="showThankYou()">
+                        <span>✨</span>
+                        अभी ऑर्डर करें
+                        <span>✨</span>
+                    </button>
+                </form>
+            </section>
+
+            <!-- Decorative Divider -->
+            <div class="my-4 h-2  max-[450px]:my-3"
+                style="background: linear-gradient(to right, transparent, rgba(37, 99, 235, 0.3), transparent);"></div>
+
+            <!-- FAQ Section -->
+            <section class="px-4">
+                <div class="faq-container">
+                    <div class="faq-header">
+                        <h2 class="faq-title font-arya">
+                            ❓
+                            अक्सर पूछे जाने वाले प्रश्न
+                        </h2>
+                        <p class="faq-subtitle font-arya">आपके सवालों के जवाब यहाँ हैं</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <div class="faq-icon">
+                                🦻
+                            </div>
+                            <div class="faq-text font-arya">क्या Ear Care Capsules कान की मशीन हटाने में मदद करते हैं?
+                            </div>
+                            <div class="faq-toggle">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content font-arya">
+                                यह सुनने की क्षमता को नैचुरली support करता है—मशीन कम करने में मदद मिलती है।
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <div class="faq-icon">
+                                🦠
+                            </div>
+                            <div class="faq-text font-arya">क्या यह कान के infection में भी काम करता है?</div>
+                            <div class="faq-toggle">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content font-arya">
+                                हाँ, इसमें मौजूद herbs कान की immunity और सूजन कम करने में सहायक हैं।
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <div class="faq-icon">
+                                👴
+                            </div>
+                            <div class="faq-text font-arya">क्या बुजुर्ग लोग भी ले सकते हैं?</div>
+                            <div class="faq-toggle">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content font-arya">
+                                जी हाँ, यह 18+ सभी उम्र के लिए सुरक्षित है।
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <div class="faq-icon">
+                                ⏰
+                            </div>
+                            <div class="faq-text font-arya">कितने समय में असर दिखता है?</div>
+                            <div class="faq-toggle">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content font-arya">
+                                आमतौर पर 2–3 हफ़्ते में फ़र्क महसूस होता है, पूरा कोर्स 2–3 महीने का होता है।
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <div class="faq-icon">
+                                🛡️
+                            </div>
+                            <div class="faq-text font-arya">क्या इसके कोई side-effects हैं?</div>
+                            <div class="faq-toggle">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content font-arya">
+                                यह pure Ayurvedic है—नियमित उपयोग सुरक्षित है।
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <div class="faq-icon">
+                                💧
+                            </div>
+                            <div class="faq-text font-arya">क्या इसे ear drops या अन्य medicines के साथ ले सकते हैं?
+                            </div>
+                            <div class="faq-toggle">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content font-arya">
+                                हाँ, यह natural है—साथ में लिया जा सकता है।
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+
+        <footer
+            class="bg-brand-primary text-white py-4 px-4 text-center max-[450px]:py-4 max-[450px]:px-3 pb-20 max-[450px]:pb-20">
+            <div class="text-sm text-gray-400 mt-4 font-arya max-[450px]:text-xs max-[450px]:mt-2">
+                <p><strong class="font-arya text-gray-400">⚠️ Disclaimer :-</strong>This product is not intended to
+                    diagnose, treat, cure, or prevent any disease. Results may vary from person to person. Always
+                    consult with a qualified healthcare professional before starting any new supplement.</p>
+            </div>
+        </footer>
+        <!-- Thank You Modal -->
+        <div id="thankYouModal" class="hidden fixed top-0 left-0 w-full h-full z-50 flex items-center justify-center"
+            style="background-color:rgba(248,210,200,0.2); border-radius: 15px; padding: 8px 16px; backdrop-filter: blur(10px); border: 2px solid rgba(248,210,200,0.3); box-shadow: 0 8px 25px rgba(0, 0, 0, 0);">
+            <div
+                class="bg-brand-light p-8 rounded-lg text-center max-w-sm mx-4 max-[450px]:p-6 max-[450px]:max-w-xs border-2 border-brand-secondary">
+                <h2 class="text-brand-primary mb-4 text-2xl font-arya font-bold max-[450px]:text-xl max-[450px]:mb-3">
+                    धन्यवाद!</h2>
+                <p class="text-xl mb-6 font-arya font-medium max-[450px]:text-lg max-[450px]:mb-4 text-brand-accent">
+                    हमने
+                    आपकी
+                    जानकारी
+                    प्राप्त कर ली है और आपकी
+                    मुफ्त सलाह निर्धारित करने के लिए 24 घंटे के भीतर आपसे संपर्क करेंगे।</p>
+            </div>
+        </div>
+        <!-- Fixed CTA Form at Bottom -->
+        <div id="fixedCTA"
+            class="fixed bottom-0 left-1/2 transform -translate-x-1/2 z-50 bg-brand-primary shadow-2xl w-[450px] border-t-4 border-brand-secondary">
+            <div class="px-8 py-3 w-full max-[450px]:px-6 max-w-screen-xl mx-auto">
+                <!-- Main Content: Centered Layout -->
+                <div class="flex flex-col items-center justify-center gap-3 max-[450px]:gap-4">
+                    <!-- Promotional Points -->
+                    <div
+                        class="flex justify-center items-center gap-4 text-white text-sm font-arya font-bold max-[450px]:text-xs max-[450px]:gap-3">
+                        <span class="truncate">🔥 Today Offer</span>
+                        <span class="truncate">📊 Diet Chart</span>
+                        <span class="truncate">💰 Cod Available</span>
+                    </div>
+
+                    <!-- Timer & Button Section -->
+                    <div class="flex items-center justify-center gap-4 max-[450px]:gap-3">
+                        <!-- Countdown Timer -->
+                        <div class="text-center">
+                            <div id="countdown"
+                                class="text-white text-lg max-[450px]:text-base font-extrabold font-arya whitespace-nowrap flex items-center gap-1">
+                                <span class="animate-pulse">⏰</span>
+                                <span>00:00:00</span>
+                            </div>
+                            <p class="text-brand-light text-xs max-[450px]:text-[10px] font-semibold font-arya">
+                                Offer समाप्त होने में
+                            </p>
+                        </div>
+
+                        <!-- Order Button -->
+                        <button id="ctaButton" onclick="scrollToContact()"
+                            class="text-white px-6 py-2.5 rounded-xl font-arya font-bold text-base transition-all duration-300 shadow-lg hover:scale-105 hover:shadow-xl transform whitespace-nowrap max-[450px]:text-sm max-[450px]:px-4 max-[450px]:py-2"
+                            style="background: linear-gradient(135deg, #16a34a, #22c55e); border: 2px solid rgba(255, 255, 255, 0.2);">
+                            <span class="flex items-center gap-2">
+                                <span>🛒</span>
+                                <span>Order Now</span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function showThankYou() {
+            // Process and fill form data
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+
+            // Validate form data
+            if (!name || !phone) {
+                alert('कृपया सभी फील्ड भरें!');
+                return false;
+            }
+
+            // Process the data (you can modify this part as needed)
+            const formData = {
+                customerName: name,
+                phoneNumber: phone,
+                timestamp: new Date().toLocaleString('hi-IN'),
+                product: 'Mirgi Mukti'
+            };
+
+            // Fill/store the processed data (example: console log or local storage)
+            console.log('Form Data Processed:', formData);
+            localStorage.setItem('customerOrder', JSON.stringify(formData));
+
+            // Show thank you modal if it exists, otherwise show alert
+            const modal = document.getElementById('thankYouModal');
+            if (modal) {
+                modal.style.display = 'flex';
+                // Auto close after 3 seconds
+                setTimeout(() => {
+                    closeModal();
+                }, 20000);
+            } else {
+                // Fallback alert with processed data
+                alert(`धन्यवाद ${name}! आपका ऑर्डर सफलतापूर्वक सबमिट हो गया है। हमारी टीम जल्द ही ${phone} पर आपसे संपर्क करेगी।`);
+                document.getElementById('contactForm').reset();
+            }
+
+            return true;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('thankYouModal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+            document.getElementById('contactForm').reset();
+        }
+
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+        // Countdown Timer Function
+        function updateCountdown() {
+            const now = new Date();
+            const tomorrow = new Date(now);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            tomorrow.setHours(0, 0, 0, 0); // Set to midnight
+
+            const timeRemaining = tomorrow - now;
+
+            const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            const formattedTime =
+                String(hours).padStart(2, '0') + ':' +
+                String(minutes).padStart(2, '0') + ':' +
+                String(seconds).padStart(2, '0');
+
+            const countdownElement = document.getElementById('countdown');
+            if (countdownElement) {
+                countdownElement.innerHTML = `<span class="animate-pulse">⏰</span> <span>${formattedTime}</span>`;
+            }
+        }
+        // Start the countdown timer immediately and update every second
+        updateCountdown(); // Initial call
+        setInterval(updateCountdown, 1000); // Update every second
+
+        // Benefits Section Scroll Animation
+        function animateBenefitsOnScroll() {
+            const benefitsSection = document.getElementById('benefitsSection');
+            const benefitCards = document.querySelectorAll('.benefit-item-card');
+
+            if (!benefitsSection) return;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        benefitCards.forEach((card, index) => {
+                            setTimeout(() => {
+                                card.classList.add('animate-in');
+                            }, index * 150); // Staggered animation
+                        });
+                        observer.unobserve(entry.target); // Animate only once
+                    }
+                });
+            }, {
+                threshold: 0.3 // Trigger when 30% of the section is visible
+            });
+
+            observer.observe(benefitsSection);
+        }
+
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            animateBenefitsOnScroll();
+        });
+
+        // FAQ Toggle Function
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const toggle = element.querySelector('.faq-toggle');
+            const isActive = faqItem.classList.contains('faq-active');
+
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('faq-active');
+                    item.querySelector('.faq-answer').classList.remove('show');
+                    item.querySelector('.faq-toggle').textContent = '+';
+                }
+            });
+
+            // Toggle current FAQ item
+            if (isActive) {
+                faqItem.classList.remove('faq-active');
+                answer.classList.remove('show');
+                toggle.textContent = '+';
+            } else {
+                faqItem.classList.add('faq-active');
+                answer.classList.add('show');
+                toggle.textContent = '−';
+            }
+        }
+        // Enhanced slider visual feedback
+        const sliders = document.querySelectorAll('.slider');
+
+        sliders.forEach(slider => {
+            slider.addEventListener('input', updateValues);
+        });
+
+
+
+        // NEW AVERAGE BASED HEALTH CALCULATION LOGIC
+        function calculateEarHealth(issues) {
+            // Filter issues with value > 0
+            const entered = issues.filter(v => v > 0);
+
+            if (entered.length === 0) return 100; // no issues = perfect health
+
+            const total = entered.reduce((a, b) => a + b, 0);
+            const average = total / entered.length;
+
+            const earHealth = Math.max(0, Math.round(100 - average));
+            return earHealth;
+        }
+
+        // CATEGORY LOGIC
+        function getEarHealthCategory(score) {
+            if (score >= 85) return "Healthy";
+            if (score >= 60) return "Mild Concern";
+            if (score >= 35) return "Needs Attention";
+            return "High Concern";
+        }
+
+        // AUTO SAFE ZONE DAYS LOGIC
+        function getSafeDaysLeft(health) {
+            if (health >= 85) return 20;
+            if (health >= 60) return 12;
+            if (health >= 35) return 6;
+            return 0;
+        }
+
+        function updateValues() {
+            // Update UI labels
+            document.getElementById("v1").innerText = listening.value + "%";
+            document.getElementById("v2").innerText = tinnitus.value + "%";
+            document.getElementById("v3").innerText = infection.value + "%";
+            document.getElementById("v4").innerText = gum.value + "%";
+            document.getElementById("v5").innerText = water.value + "%";
+            document.getElementById("v6").innerText = blood.value + "%";
+
+            // Collect issue values
+            const issues = [
+                +listening.value,
+                +tinnitus.value,
+                +infection.value,
+                +gum.value,
+                +water.value,
+                +blood.value
+            ];
+
+            // NEW AVERAGE BASED SCORING LOGIC
+            const health = calculateEarHealth(issues);
+            document.getElementById('healthScore').innerText = health + "%";
+
+            const category = getEarHealthCategory(health);
+            document.getElementById('category').innerText = category;
+
+            // Apply dynamic colors based on status
+            updateResultBoxColors(category);
+
+            const daysLeft = getSafeDaysLeft(health);
+
+            document.getElementById('message').innerText =
+                getMessage(category, daysLeft);
+        }
+
+        // DYNAMIC COLOR UPDATE FUNCTION
+        function updateResultBoxColors(category) {
+            const resultBox = document.getElementById('resultBox');
+            const categoryElement = document.getElementById('category');
+            const alertElement = document.getElementById('alertText');
+
+            // Remove all previous status classes
+            resultBox.classList.remove('result-healthy', 'result-mild', 'result-attention', 'result-concern');
+            categoryElement.classList.remove('status-healthy', 'status-mild', 'status-attention', 'status-concern');
+            alertElement.classList.remove('alert-healthy', 'alert-mild', 'alert-attention', 'alert-concern');
+
+            // Apply appropriate status classes based on category
+            switch (category) {
+                case "Healthy":
+                    resultBox.classList.add('result-healthy');
+                    categoryElement.classList.add('status-healthy');
+                    alertElement.classList.add('alert-healthy');
+                    break;
+                case "Mild Concern":
+                    resultBox.classList.add('result-mild');
+                    categoryElement.classList.add('status-mild');
+                    alertElement.classList.add('alert-mild');
+                    break;
+                case "Needs Attention":
+                    resultBox.classList.add('result-attention');
+                    categoryElement.classList.add('status-attention');
+                    alertElement.classList.add('alert-attention');
+                    break;
+                case "High Concern":
+                    resultBox.classList.add('result-concern');
+                    categoryElement.classList.add('status-concern');
+                    alertElement.classList.add('alert-concern');
+                    break;
+            }
+        }
+
+        // MESSAGE SYSTEM
+        function getMessage(category, days) {
+            if (days === 0) {
+                return `⚠ आपकी कान की स्थिति तुरंत ध्यान देने योग्य है।
+कृपया देरी न करें — अभी care लें।`;
+            }
+
+            return {
+                "Healthy":
+                    `आपकी ear condition अभी control में है।
+Safe zone में लगभग ${days} दिन बाकी हैं।`,
+
+                "Mild Concern":
+                    `कान में कुछ हल्की परेशानियाँ दिख रही हैं।
+अगर सही care नहीं ली तो लगभग ${days} दिनों में स्थिति खराब हो सकती है।`,
+
+                "Needs Attention":
+                    `कान में noticeable समस्याएँ मौजूद हैं।
+आपके पास लगभग ${days} दिन हैं स्थिति बिगड़ने से पहले care लेने के लिए।`,
+
+                "High Concern":
+                    `कान की परेशानी काफी बढ़ी हुई है।
+अभी immediate care लेना ही सबसे सुरक्षित रहेगा।`
+            }[category];
+        }
+    </script>
+</body>
+
+</html>
